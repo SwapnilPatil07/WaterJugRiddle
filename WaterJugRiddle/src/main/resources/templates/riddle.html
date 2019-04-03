@@ -1,0 +1,120 @@
+<!DOCTYPE HTML>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<head>
+	<meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1"/>
+    <meta name="description" content="Water Jug Riddle">
+    <meta name="author" content="Swapnil Patil">
+    <link rel="icon" href="../../favicon.ico"/>
+	<title>Water Jug Riddle</title>
+	<link href="../static/css/bootstrap.min.css" rel="stylesheet" th:href="@{/css/bootstrap.min.css}" />
+	<link href="../static/css/all.min.css" rel="stylesheet"  th:href="@{/css/all.min.css}" />
+	<link href="../static/css/jug-riddle.css" rel="stylesheet" th:href="@{/css/jug-riddle.css}" />
+</head>
+<body>
+	<nav class="navbar navbar-expand-lg navbar-light bg-light">
+	  <a class="navbar-brand"  href="#">Water Jug Riddle !</a>
+	  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#riddleNavbar" 
+	  		aria-controls="riddleNavbar" aria-expanded="false" aria-label="Toggle navigation">
+	   	 <span class="navbar-toggler-icon"></span>
+	  </button>	
+	  <div class="collapse navbar-collapse" id="riddleNavbar">
+	    <div class="mr-auto"></div>  
+	    <button class="btn btn-primary my-2 my-sm-0" type="button"  data-toggle="modal" data-target="#instructionsModal">Instructions</button>	    
+	   </div>
+	</nav>
+	<form id="riddle-form">
+		<div class="form-group">  
+           <div class="row justify-content-center">                   
+               <div class="p-3 col-lg-2 col-md-3 col-sm-4 col-10 text-center form-group">                        
+                   <div class="input-group-center">
+                  	   <label id="jugX-label" class="form-control-label" for="jugX">*Jug X</label>
+                       <input  type="text" id="jugX" name="jugX" class="form-control text-center"  data-validator-label="'jug X'"
+                       			data-validator="required|integer|min_numeric:1|max_numeric:100000000|mustNotContainCharacter" placeholder="Enter value for Jug X">
+                       <small class="text-muted">Please enter numeric value.</small>
+                       <div id="jugX-div" class="form-control-feedback"></div>
+                   </div>
+               </div>
+               <div class="p-3 col-lg-2 col-md-3 col-sm-4 col-10 text-center form-group" >                        
+                   <div class="input-group-center">
+                   	   <label id="jugY-label" class="form-control-label" for="jugY">*Jug Y</label>
+                       <input  type="text" id="jugY" class="form-control text-center" data-validator-label="'jug Y'" 
+                       	data-validator="required|integer|min_numeric:1|max_numeric:100000000|mustNotContainCharacter" placeholder="Enter value for Jug Y">
+                       	<small class="text-muted">Please enter numeric value.</small>
+                       	<div id="jugY-div" class="form-control-feedback"></div>
+                   </div>    
+               </div>
+               <div class="p-3 col-lg-2 col-md-3 col-sm-4 col-10 text-center form-group">                        
+                   <div class="input-group-center">
+                   	   <label id="jugZ-label" class="form-control-label" for="jugZ">*Jug Z</label> 	
+                       <input  type="text" id="jugZ" class="form-control text-center"  data-validator-label="'jug Z'"  
+                       data-validator="required|integer|min_numeric:1|max_numeric:100000000|mustNotContainCharacter" placeholder="Enter value for Jug Z">
+                       <small class="text-muted">Please enter numeric value.</small>
+                       <div id="jugZ-div" class="form-control-feedback"></div>      
+                    </div>   
+               </div>    
+                <div class="p-3 col-lg-2 col-md-3 col-sm-4 col-10 text-center form-group">                        
+                    <div class="p-3 col-lg-2 col-md-3 col-sm-4 col-10 text-center"> 
+	           			<button type="submit" id="getSteps" class="btn btn-primary btn-lg">
+	                       Get Steps
+	                    </button>     
+           			</div>    
+               </div>       
+           </div> 
+	     </div> 
+	     <div class="container" id="instructionMsg">		    
+			    <div class="card">
+			      <div class="card-header">Instructions</div>
+			      <div class="card-body">
+			      		<h5 class="card-title">Welcome to water jug riddle !!!</h5>						
+						<label>This application solves the Water Jug Riddle for dynamic inputs for jugX, jugY and jugZ.</label><br>
+				      	Please follow below tips/instructions to use application.
+				        <ul>
+						  <li>Please enter numeric values for jugX, jugY and jugZ.</li>
+						  <li>Click on 'Get Steps' button to solve riddle and get result.</li>
+						  <li>Result with number of steps will be displayed on screen.</li>
+						  <li>Please click 'Instruction' button at the top of screen to access instructions again.</li>
+						</ul>
+				  </div>
+			  </div>
+		</div>  
+		
+		<div class="modal fade" id="instructionsModal" tabindex="-1" role="dialog" aria-labelledby="instructionsModal" aria-hidden="true">
+		  <div class="modal-dialog" role="document">
+		    <div class="modal-content">
+		      <div class="modal-header">
+		        <h5 class="modal-title" id="exampleModalLabel">Instructions</h5>
+		        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+		          <span aria-hidden="true">&times;</span>
+		        </button>
+		      </div>
+		      <div class="modal-body">		        						
+					<label>This application solves the Water Jug Riddle for dynamic inputs for jugX, jugY and jugZ.</label><br>
+			      	Please follow below tips/instructions to use application.
+			        <ul>
+					  <li>Please enter numeric values for jugX, jugY and jugZ.</li>
+					  <li>Click on 'Get Steps' button to solve riddle and get result.</li>
+					  <li>Result with number of steps will be displayed on screen.</li>
+					  <li>Please click 'Instruction' button at the top of screen to access instructions again.</li>
+					</ul>
+		      </div>
+		      <div class="modal-footer">
+		        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+		      </div>
+		    </div>
+		  </div>
+		</div>
+		       
+	</form> 
+	
+	<div id="steps"></div>
+		
+	<!-- Place JS at end to load page faster -->
+	<script src="../static/js/jquery-3.3.1.min.js" th:src="@{/js/jquery-3.3.1.min.js}"></script>
+	<script src="../static/js/bootstrap.min.js" th:src="@{/js/bootstrap.min.js}"></script>
+	<script src="../static/js/all.min.js" th:src="@{/js/all.min.js}"></script>
+	<script src="../static/js/jquery.form-validation.js" th:src="@{/js/jquery.form-validation.js}"></script>
+	<script src="../static/js/jug-riddle.js" th:src="@{/js/jug-riddle.js}"></script>
+</body>
+</html>

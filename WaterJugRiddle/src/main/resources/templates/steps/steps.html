@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns="http://www.w3.org/1999/xhtml">
+	<head>
+	</head>
+	<body>	
+		<th:block th:fragment="list">
+		  <th:block th:if="${msg != null}">
+		      <div class="row justify-content-center">
+		      	<div class="col-lg-6 col-md-6 col-sm-10 col-10" align="center">	
+				    <div th:switch="${msg}">
+					  	<div th:case="'Success'" class="alert alert-success" role="alert">
+							  <span>Solution found in <span th:text=${size}></span> steps !</span><br>
+							  <th:block th:if="${size > 100}">
+							  		<span>Showing last <span th:text=${#lists.size(stateList)}></span> steps below.</span>
+							  </th:block>
+						</div>
+						<div th:case="'NoSolution'" class="alert alert-danger" role="alert">							  
+							  No solution found for given input. Please try with different input.
+						</div>
+						<div th:case="*" class="alert alert-danger" role="alert">							  
+							  <span th:text=${msg}></span>
+						</div>
+					</div>
+				</div>
+			  </div>	
+		    </th:block>
+		    <!-- Iterate over list of steps and populate UI -->
+		    <th:block th:if="${stateList != null}">
+		        <div class="row justify-content-center">
+			        <th:block th:each="state, iter: ${stateList}">			  
+			          <div class="col-lg-3 col-md-5 col-sm-9 col-9" align="center">	
+				          <div class="Box">
+							<div>
+							  <div class="row justify-content-center" align="center"> 
+							  	 <label>Step <span th:text=${iter.index+1+stateCounter}></span>-<span th:text=${state.message}></span></label>  
+						   	  </div>
+						   	   <div class="row">
+							    <div class="col-lg-6 col-md-6 col-sm-6 col-6" align="center">
+							 	   <label>Jug X</label>  	
+							    </div>
+							    <div class="col-lg-6 col-md-6 col-sm-6 col-6" align="center">
+							        <label>Jug Y</label>  
+							    </div>
+							  </div>
+						  	  <div class="row">	  	  
+							    <div class="col-lg-6 col-md-6 col-sm-6 col-6">
+							    	<div class="Jug-Conainer">
+							    		<!-- Dynamically calculate small jug height. Minimum height is 50 px. -->
+							    		<div class="Jug" th:style="'height:'+@{${jugXhgt}}+'px;'">
+							    			<!-- Dynamically calculate water level. level = state/size * 100 -->
+											<div class="Water"  th:style="'height:'+@{${state.jugX}/${jugX}*100}+'%;'">
+											</div>
+										</div>
+							    	</div>					     
+							    </div>
+							    <div class="col-lg-6 col-md-6 col-sm-6 col-6">
+							   	 <div class="Jug-Conainer">
+							   	 	<!-- Dynamically calculate small jug height. Minimum height is 50 px. -->
+							      	<div class="Jug" th:style="'height:'+@{${jugYhgt}}+'px;'">
+							      		<!-- Dynamically calculate water level. level = state/size * 100 -->
+										<div class="Water" th:style="'height:'+@{${state.jugY}/${jugY}*100}+'%;'">
+										</div>
+									</div>
+								 </div>	
+							    </div>
+							  </div>
+							  <!-- Show current water level in jugs -->
+							  <div class="row">
+							    <div class="col-lg-6 col-md-6 col-sm-6 col-6" align="center">
+							       <label><span th:text=${state.jugX}></span> gal</label>	
+							    </div>
+							    <div class="col-lg-6 col-md-6 col-sm-6 col-6" align="center">
+							      <label><span th:text=${state.jugY}></span> gal</label> 
+							    </div>
+							  </div>
+							</div>					
+						</div>
+					</div>
+					 <!--  Show arrow in the direction of next step -->	
+					 <th:block th:if="${#lists.size(stateList) != iter.index+1}">	
+						<div class="col-lg-1 col-md-1 d-none d-md-block" style="padding-top:5%;" align="center">
+							<div class="Arrow Right"></div>			
+						</div>
+						<div class="d-md-none col-sm-12" style="padding:5%;" align="center">
+							<div class="Arrow Down"></div>			
+						</div>
+					 </th:block>	
+					 <th:block th:if="${#lists.size(stateList) == iter.index+1}">
+					 	<div class="col-lg-1 col-md-1 d-none d-md-block" style="padding-top:5%;" align="center">										
+						</div>
+					 </th:block>
+			      </th:block>
+		      </div>
+		    </th:block>		  
+		</th:block>
+	</body>
+
+</html>
